@@ -77,7 +77,7 @@ def test_get_single_member_has_keys(client):
     data = json.loads(response.data)
 
     assert data is not None
-    assert "first_name" in data
+    assert "name" in data
     assert "id" in data
     assert "age" in data
     assert "lucky_numbers" in data
@@ -87,8 +87,8 @@ def test_get_first_member_tommy(client):
     response = client.get('/member/3443')
     data = json.loads(response.data)
     assert data is not None
-    assert "first_name" in data
-    assert data["first_name"] == "Tommy"
+    assert "name" in data
+    assert data["name"] == "Tommy"
 
 @pytest.mark.it("Implement method DELETE /member/<int:id> to delete a family member")
 def test_delete_member(client):
@@ -98,7 +98,7 @@ def test_delete_member(client):
 @pytest.mark.it("Method DELETE /member/3443 should return dictionary with 'done' key")
 def test_delete_response(client):
     client.post('/member', json={
-		"first_name": "Tommy",
+		"name": "Tommy",
         "id": 3443,
 		"age": 23,
 		"lucky_numbers": [34,65,23,4,6]
